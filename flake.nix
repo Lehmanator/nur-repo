@@ -1,6 +1,8 @@
 {
-  description = "My personal NUR repository";
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+  };
+
   outputs = { self, nixpkgs }:
     let
       systems = [
@@ -19,4 +21,13 @@
       });
       packages = forAllSystems (system: nixpkgs.lib.filterAttrs (_: v: nixpkgs.lib.isDerivation v) self.legacyPackages.${system});
     };
+
+  description = "Lehmanator's NUR repository";
+  nixConfig = {
+    accept-flake-config = true;
+    experimental-features = ["nix-command" "flakes" "repl-flake"];
+    fallback = true;
+    extra-substituters = ["https://lehmanator.cachix.org/"];
+    extra-trusted-public-keys = ["lehmanator.cachix.org-1:kT+TO3tnSoz+lxk2YZSsMOtVRZ7Gc57jaKWL57ox1wU="];
+  };
 }
