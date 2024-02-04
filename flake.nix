@@ -12,6 +12,7 @@
       "aarch64-linux"
       "armv6l-linux"
       "armv7l-linux"
+      "riscv64-linux"
     ];
     forAllSystems = f: inputs.nixpkgs.lib.genAttrs systems (system: f system);
   in
