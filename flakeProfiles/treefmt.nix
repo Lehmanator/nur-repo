@@ -1,6 +1,18 @@
-{ config, lib, pkgs, inputs, self, ... }: {
-  imports = [ inputs.treefmt-nix.flakeModule ];
-  perSystem = { config, lib, pkgs, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  self,
+  ...
+}: {
+  imports = [inputs.treefmt-nix.flakeModule];
+  perSystem = {
+    config,
+    lib,
+    pkgs,
+    ...
+  }: {
     #formatter = config.perSystem.treefmt.build.wrapper;
     treefmt = rec {
       inherit (config.flake-root) projectRootFile;
@@ -16,9 +28,10 @@
         rustfmt.enable = true;
       };
       settings = {
-        global.excludes = [ "${projectRoot}/**/node_modules/" ];
+        global.excludes = ["${projectRoot}/**/node_modules/"];
         formatter = {
           nixpkgs-fmt = {
+<<<<<<< HEAD
             includes = [ "${projectRoot}/pkgs/**.nix" ];
             excludes = [ "*.nix" ];
           };
@@ -27,6 +40,16 @@
             excludes = [ "${projectRoot}/pkgs/**.nix" ];
           };
           rustfmt.includes = [ "${projectRoot}/pkgs/*/src/**.rs" ];
+=======
+            includes = ["${projectRoot}/pkgs/**.nix"];
+            excludes = ["*.nix"];
+          };
+          nixfmt = {
+            #includes = [ "${projectRoot}/**.nix" ];
+            excludes = ["${projectRoot}/pkgs/**.nix"];
+          };
+          rustfmt.includes = ["${projectRoot}/pkgs/*/src/**.rs"];
+>>>>>>> db0cf93ed9c3900e1512dc0ded24ff122da36970
         };
       };
 
