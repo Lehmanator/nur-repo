@@ -19,14 +19,14 @@
         global.excludes = [ "${projectRoot}/**/node_modules/" ];
         formatter = {
           nixpkgs-fmt = {
-            includes = [ "${projectRoot}/packages/**.nix" ];
+            includes = [ "${projectRoot}/pkgs/**.nix" ];
             excludes = [ "*.nix" ];
           };
           nixfmt = {
             #includes = [ "${projectRoot}/**.nix" ];
-            excludes = [ "${projectRoot}/packages/**.nix" ];
+            excludes = [ "${projectRoot}/pkgs/**.nix" ];
           };
-          rustfmt.includes = [ "${projectRoot}/packages/*/src/**.rs" ];
+          rustfmt.includes = [ "${projectRoot}/pkgs/*/src/**.rs" ];
         };
       };
 
